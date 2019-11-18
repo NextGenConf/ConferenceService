@@ -5,7 +5,14 @@
     /// </summary>
     public class Venue
     {
+        /// <summary>
+        /// The name of the Venue.
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// The specific address of the venue.
+        /// </summary>
         public Address Address { get; set; }
     }
 }
