@@ -22,7 +22,7 @@
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<ConferenceDatabaseSettings>(Configuration.GetSection(nameof(ConferenceDatabaseSettings)));
-            services.AddSingleton<IConferenceDatabaseSettings>(sp => sp.GetRequiredService<IOptions<ConferenceDatabaseSettings>>().Value);
+            services.AddSingleton<ConferenceDatabaseSettings>(sp => sp.GetRequiredService<IOptions<ConferenceDatabaseSettings>>().Value);
 
             services.AddSingleton<IConferenceService, ConferenceService>();
         }

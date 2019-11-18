@@ -14,7 +14,7 @@ namespace ConferenceService.Services
 
         private readonly IMongoCollection<Conference> conferences;
 
-        public ConferenceService(IConferenceDatabaseSettings settings)
+        public ConferenceService(ConferenceDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);

@@ -1,6 +1,6 @@
 ﻿namespace ConferenceService.Services
 {
-    public class ConferenceDatabaseSettings : IConferenceDatabaseSettings
+    public class ConferenceDatabaseSettings
     {
         public string ConferenceCollectionName { get; set; }
         public string ConnectionString { get; set; }
