@@ -25,11 +25,13 @@
         /// <summary>
         /// Conference start date.
         /// </summary>
+        [BsonDateTimeOptions]
         public DateTime StartDate { get; set; }
 
         /// <summary>
         /// Conference end date.
         /// </summary>
+        [BsonDateTimeOptions]
         public DateTime EndDate { get; set; }
 
         /// <summary>
