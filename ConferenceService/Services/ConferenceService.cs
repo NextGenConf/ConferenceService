@@ -22,9 +22,11 @@ namespace ConferenceService.Services
             conferences = database.GetCollection<Conference>(settings.ConferenceCollectionName);
         }
 
-        private ConferenceService()
-        {
-        }
+        /// <summary>
+        /// Private default constructor to make sure it's never
+        /// initialized this way.
+        /// </summary>
+        private ConferenceService() { } 
 
         /// <summary>
         /// Find a conference with the specific id.
