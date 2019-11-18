@@ -1,10 +1,12 @@
 ﻿namespace ConferenceService
 {
+    using ConferenceService.Services;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Options;
 
     public class Startup
     {
@@ -19,6 +21,10 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.Configure<ConferenceDatabaseSettings>(Configuration.GetSection(nameof(ConferenceDatabaseSettings)));
+            services.AddSingleton<IConferenceDatabaseSettings>(sp => sp.GetRequiredService<IOptions<ConferenceDatabaseSettings>>().Value);
+
+            services.AddSingleton<IConferenceService, ConferenceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
