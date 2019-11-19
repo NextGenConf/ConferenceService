@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ConferenceService.Models;
-using MongoDB.Driver;
-
-namespace ConferenceService.Services
+﻿namespace ConferenceService.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using ConferenceService.Models;
+    using MongoDB.Driver;
+    
     /// <summary>
     /// An implementation of IConferenceService.
     /// </summary>

@@ -1,8 +1,8 @@
-﻿using ConferenceService.Models;
-using System.Collections.Generic;
-
-namespace ConferenceService.Services
+﻿namespace ConferenceService.Services
 {
+    using ConferenceService.Models;
+    using System.Collections.Generic;
+
     /// <summary>
     /// An interface for interacting with the conference data model.
     /// </summary>
