@@ -39,7 +39,7 @@ namespace ConferenceService.Test
             mockConferenceService.Setup(m => m.GetAll()).Returns(conferences);
 
             var conferenceController = new ConferenceController(mockConferenceService.Object);
-            var result = conferenceController.Get().Value;
+            var result = conferenceController.GetAllConferences().Value;
             Assert.AreEqual(conferences.Count, result.Count());
 
             foreach (var conf in conferences)
@@ -59,7 +59,7 @@ namespace ConferenceService.Test
             var mockConferenceService = new Mock<IConferenceService>();
             mockConferenceService.Setup(c => c.GetAll()).Returns(new List<Conference>());
             var conferenceController = new ConferenceController(mockConferenceService.Object);
-            var result = conferenceController.Get().Value;
+            var result = conferenceController.GetAllConferences().Value;
 
             Assert.AreEqual(0, result.Count());
             mockConferenceService.Verify(cs => cs.GetAll(), Times.Once());
@@ -82,7 +82,7 @@ namespace ConferenceService.Test
             mockConferenceService.Setup(c => c.GetByUniqueName(It.IsAny<string>())).Returns(conference);
 
             var conferenceController = new ConferenceController(mockConferenceService.Object);
-            var result = conferenceController.Get("5dd2b0c4a3a3e850dc1b9c55").Value;
+            var result = conferenceController.GetConferenceByUniqueName("5dd2b0c4a3a3e850dc1b9c55").Value;
             Assert.AreEqual(conference, result);
         }
 
@@ -97,7 +97,7 @@ namespace ConferenceService.Test
             mockConferenceService.Setup(c => c.GetByUniqueName(It.IsAny<string>())).Returns((Conference)null);
 
             var conferenceController = new ConferenceController(mockConferenceService.Object);
-            var result = conferenceController.Get("6aa2b0c4a3a3e850dc1b9a62").Value;
+            var result = conferenceController.GetConferenceByUniqueName("6aa2b0c4a3a3e850dc1b9a62").Value;
             mockConferenceService.Verify(
                 c => c.GetByUniqueName(It.Is<string>(id => id == "6aa2b0c4a3a3e850dc1b9a62")),
                 Times.Once());

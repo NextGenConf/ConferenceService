@@ -19,14 +19,14 @@
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<Conference>> Get()
+        public ActionResult<IEnumerable<Conference>> GetAllConferences()
         {
             return conferenceService.GetAll().ToList();
         }
         
         // GET api/values/5
         [HttpGet("{uniqueName}")]
-        public ActionResult<Conference> Get(string uniqueName)
+        public ActionResult<Conference> GetConferenceByUniqueName(string uniqueName)
         {
             return conferenceService.GetByUniqueName(uniqueName);
         }
