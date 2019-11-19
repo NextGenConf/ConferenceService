@@ -1,9 +1,9 @@
 ﻿namespace ConferenceService.Services
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ConferenceService.Models;
+    using global::ConferenceService.Configuration;
+    using Models;
     using MongoDB.Driver;
     
     /// <summary>

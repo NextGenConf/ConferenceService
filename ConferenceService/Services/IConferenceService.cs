@@ -1,7 +1,7 @@
 ﻿namespace ConferenceService.Services
 {
-    using ConferenceService.Models;
     using System.Collections.Generic;
+    using global::ConferenceService.Models;
 
     /// <summary>
     /// An interface for interacting with the conference data model.
