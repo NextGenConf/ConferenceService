@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ConferenceService.Models
+﻿namespace ConferenceService.Models
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Class representing a conference venue.
     /// </summary>

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace ConferenceService.Models
+﻿namespace ConferenceService.Models
 {
+    using System;
+
     /// <summary>
     /// Class representing an address.
     /// </summary>
