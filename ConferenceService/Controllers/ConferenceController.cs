@@ -28,7 +28,7 @@
         [HttpGet("{id}")]
         public ActionResult<Conference> Get(string id)
         {
-            return conferenceService.GetById(id);
+            return conferenceService.GetByUniqueName(id);
         }
     }
 }

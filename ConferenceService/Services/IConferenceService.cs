@@ -18,7 +18,7 @@
         /// </summary>
         /// <param name="id">The id of the conference to retrieve</param>
         /// <returns>Conference</returns>
-        Conference GetById(string id);
+        Conference GetByUniqueName(string id);
     }
 
 }

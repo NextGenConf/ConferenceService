@@ -31,11 +31,11 @@
         /// <summary>
         /// Find a conference with the specific id.
         /// </summary>
-        /// <param name="id">The id to filter by</param>
+        /// <param name="uniqueName">The id to filter by</param>
         /// <returns>The retrieved conference.</returns>
-        public Conference GetById(string id)
+        public Conference GetByUniqueName(string uniqueName)
         {
-            return conferences.Find(conference => conference.Id == id).FirstOrDefault();
+            return conferences.Find(conference => conference.UniqueName == uniqueName).FirstOrDefault();
         }
 
         /// <summary>
