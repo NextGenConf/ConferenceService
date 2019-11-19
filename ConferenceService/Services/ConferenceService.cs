@@ -42,7 +42,7 @@
         /// </summary>
         public IEnumerable<Conference> GetAll()
         {
-            return conferences.Find(_ => true).ToList();
+            return conferences.Find(_ => true).Sort("{StartTime: 1}").ToList();
         }
     }
 }
