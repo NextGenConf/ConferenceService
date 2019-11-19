@@ -25,10 +25,10 @@
         }
         
         // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<Conference> Get(string id)
+        [HttpGet("{uniqueName}")]
+        public ActionResult<Conference> Get(string uniqueName)
         {
-            return conferenceService.GetByUniqueName(id);
+            return conferenceService.GetByUniqueName(uniqueName);
         }
     }
 }

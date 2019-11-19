@@ -11,7 +11,6 @@
     /// </summary>
     public class ConferenceService : IConferenceService
     {
-
         private readonly IMongoCollection<Conference> conferences;
 
         public ConferenceService(ConferenceDatabaseSettings settings)
@@ -31,7 +30,7 @@
         /// <summary>
         /// Find a conference with the specific id.
         /// </summary>
-        /// <param name="uniqueName">The id to filter by</param>
+        /// <param name="uniqueName">Unique name </param>
         /// <returns>The retrieved conference.</returns>
         public Conference GetByUniqueName(string uniqueName)
         {
