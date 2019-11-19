@@ -1,4 +1,4 @@
-﻿namespace ConferenceService.Services
+﻿namespace ConferenceService.Configuration
 {
     /// <summary>
     /// The settings required to setup a successful connection
