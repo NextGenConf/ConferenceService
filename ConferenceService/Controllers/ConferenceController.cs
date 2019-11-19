@@ -17,14 +17,21 @@
             this.conferenceService = conferenceService;
         }
 
-        // GET api/values
+        /// <summary>
+        /// Retrieves all conferences in the database.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<IEnumerable<Conference>> Get()
         {
             return conferenceService.GetAll().ToList();
         }
         
-        // GET api/values/5
+        /// <summary>
+        /// Retrieves a conference by a specific id.
+        /// </summary>
+        /// <param name="id">The id of the conference to get.</param>
+        /// <returns>The conference object.</returns>
         [HttpGet("{id}")]
         public ActionResult<Conference> Get(string id)
         {
