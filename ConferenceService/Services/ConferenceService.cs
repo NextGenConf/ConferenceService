@@ -43,7 +43,7 @@
         /// </summary>
         public IEnumerable<Conference> GetAll()
         {
-            return conferences.Find(conference => true).ToList();
+            return conferences.Find(_ => true).ToList();
         }
     }
 }
