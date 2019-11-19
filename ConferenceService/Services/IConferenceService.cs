@@ -16,9 +16,9 @@
         /// <summary>
         /// Retrieves the conference with a specific id.
         /// </summary>
-        /// <param name="id">The id of the conference to retrieve</param>
+        /// <param name="uniqueName">The id of the conference to retrieve</param>
         /// <returns>Conference</returns>
-        Conference GetByUniqueName(string id);
+        Conference GetByUniqueName(string uniqueName);
     }
 
 }
