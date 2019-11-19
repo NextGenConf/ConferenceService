@@ -23,13 +23,13 @@ namespace ConferenceService.Test
             {
                 new Conference()
                 {
-                    Name = "Eva's conference",
+                    DisplayName = "Eva's conference",
                     StartDate = DateTime.UtcNow,
                     EndDate = DateTime.UtcNow
                 },
                 new Conference()
                 {
-                    Name = "Grant's conference",
+                    DisplayName = "Grant's conference",
                     StartDate = DateTime.UtcNow,
                     EndDate = DateTime.UtcNow,
                 }
@@ -39,7 +39,7 @@ namespace ConferenceService.Test
             mockConferenceService.Setup(m => m.GetAll()).Returns(conferences);
 
             var conferenceController = new ConferenceController(mockConferenceService.Object);
-            var result = conferenceController.Get().Value;
+            var result = conferenceController.GetAllConferences().Value;
             Assert.AreEqual(conferences.Count, result.Count());
 
             foreach (var conf in conferences)
@@ -59,7 +59,7 @@ namespace ConferenceService.Test
             var mockConferenceService = new Mock<IConferenceService>();
             mockConferenceService.Setup(c => c.GetAll()).Returns(new List<Conference>());
             var conferenceController = new ConferenceController(mockConferenceService.Object);
-            var result = conferenceController.Get().Value;
+            var result = conferenceController.GetAllConferences().Value;
 
             Assert.AreEqual(0, result.Count());
             mockConferenceService.Verify(cs => cs.GetAll(), Times.Once());
@@ -74,15 +74,15 @@ namespace ConferenceService.Test
             var mockConferenceService = new Mock<IConferenceService>();
             var conference = new Conference()
             {
-                Name = "Oliver Wheeler's Conference",
+                DisplayName = "Oliver Wheeler's Conference",
                 StartDate = DateTime.UtcNow,
                 EndDate = DateTime.UtcNow,
-                Id = "5dd2b0c4a3a3e850dc1b9c55",
+                UniqueName = "5dd2b0c4a3a3e850dc1b9c55",
             };
-            mockConferenceService.Setup(c => c.GetById(It.IsAny<string>())).Returns(conference);
+            mockConferenceService.Setup(c => c.GetByUniqueName(It.IsAny<string>())).Returns(conference);
 
             var conferenceController = new ConferenceController(mockConferenceService.Object);
-            var result = conferenceController.Get("5dd2b0c4a3a3e850dc1b9c55").Value;
+            var result = conferenceController.GetConferenceByUniqueName("5dd2b0c4a3a3e850dc1b9c55").Value;
             Assert.AreEqual(conference, result);
         }
 
@@ -94,12 +94,12 @@ namespace ConferenceService.Test
         public void GetById_WrongId_Null()
         {
             var mockConferenceService = new Mock<IConferenceService>();
-            mockConferenceService.Setup(c => c.GetById(It.IsAny<string>())).Returns((Conference)null);
+            mockConferenceService.Setup(c => c.GetByUniqueName(It.IsAny<string>())).Returns((Conference)null);
 
             var conferenceController = new ConferenceController(mockConferenceService.Object);
-            var result = conferenceController.Get("6aa2b0c4a3a3e850dc1b9a62").Value;
+            var result = conferenceController.GetConferenceByUniqueName("6aa2b0c4a3a3e850dc1b9a62").Value;
             mockConferenceService.Verify(
-                c => c.GetById(It.Is<string>(id => id == "6aa2b0c4a3a3e850dc1b9a62")),
+                c => c.GetByUniqueName(It.Is<string>(id => id == "6aa2b0c4a3a3e850dc1b9a62")),
                 Times.Once());
             Assert.IsNull(result);
         }
