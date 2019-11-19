@@ -45,5 +45,17 @@
         {
             return conferences.Find(_ => true).ToList();
         }
+
+        /// <summary>
+        /// Adds a conference to the db.
+        /// </summary>
+        /// <param name="conference">The conference to add</param>
+        /// <returns>The conference, with an updated id.</returns>
+        public Conference Add(Conference conference)
+        {
+            conferences.InsertOne(conference);
+            // Conference is now updated with the id used during insertion.
+            return conference;
+        }
     }
 }

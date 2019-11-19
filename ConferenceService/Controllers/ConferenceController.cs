@@ -5,6 +5,7 @@
     using ConferenceService.Models;
     using ConferenceService.Services;
     using Microsoft.AspNetCore.Mvc;
+    using MongoDB.Bson.IO;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -29,6 +30,16 @@
         public ActionResult<Conference> Get(string id)
         {
             return conferenceService.GetById(id);
+        }
+
+        /// <summary>
+        /// POST call to add a new conference.
+        /// </summary>
+        /// <param name="conference">The conference to add.</param>
+        [HttpPost]
+        public void Post([FromBody] Conference conference)
+        {
+            conferenceService.Add(conference);
         }
     }
 }
