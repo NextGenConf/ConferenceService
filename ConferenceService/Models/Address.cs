@@ -1,4 +1,6 @@
-﻿namespace ConferenceService.Models
+﻿using System;
+
+namespace ConferenceService.Models
 {
     /// <summary>
     /// Class representing an address.
@@ -24,5 +26,19 @@
         /// Address's postal code.
         /// </summary>
         public string PostalCode { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Address address &&
+                   AddressLine == address.AddressLine &&
+                   City == address.City &&
+                   Country == address.Country &&
+                   PostalCode == address.PostalCode;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(AddressLine, City, Country, PostalCode);
+        }
     }
 }

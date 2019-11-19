@@ -1,4 +1,7 @@
-﻿namespace ConferenceService.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace ConferenceService.Models
 {
     /// <summary>
     /// Class representing a conference venue.
@@ -14,5 +17,17 @@
         /// The specific address of the venue.
         /// </summary>
         public Address Address { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Venue venue &&
+                   Name == venue.Name &&
+                   EqualityComparer<Address>.Default.Equals(Address, venue.Address);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Name, Address);
+        }
     }
 }

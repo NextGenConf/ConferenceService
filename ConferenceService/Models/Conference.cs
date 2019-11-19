@@ -20,7 +20,27 @@
         /// <summary>
         /// The name of the conference.
         /// </summary>
-        public string Name { get; set; }
+        public string DisplayName { get; set; }
+
+        /// <summary>
+        /// A unique name identifying the conference.
+        /// </summary>
+        public string UniqueName { get; set; }
+
+        /// <summary>
+        /// Location of the conference icon
+        /// </summary>
+        public string IconUri { get; set; }
+
+        /// <summary>
+        /// The description of the conference.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// The Conference subtitle.
+        /// </summary>
+        public string Subtitle { get; set; }
 
         /// <summary>
         /// Conference start date.
@@ -41,7 +61,7 @@
         {
             return obj is Conference conference &&
                    Id == conference.Id &&
-                   Name == conference.Name &&
+                   DisplayName == conference.DisplayName &&
                    StartDate == conference.StartDate &&
                    EndDate == conference.EndDate &&
                    EqualityComparer<Venue>.Default.Equals(Venue, conference.Venue);
@@ -49,7 +69,7 @@
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Name, StartDate, EndDate, Venue);
+            return HashCode.Combine(Id, DisplayName, StartDate, EndDate, Venue);
         }
     }
 }
