@@ -11,16 +11,30 @@
     public class Conference
     {
         /// <summary>
-        /// A unique ID for each conference.
+        /// A unique name identifying the conference.
         /// </summary>
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string UniqueName { get; set; } 
 
         /// <summary>
         /// The name of the conference.
         /// </summary>
-        public string Name { get; set; }
+        public string DisplayName { get; set; }
+
+        /// <summary>
+        /// Location of the conference icon
+        /// </summary>
+        public string IconUri { get; set; }
+
+        /// <summary>
+        /// The description of the conference.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// The Conference subtitle.
+        /// </summary>
+        public string Subtitle { get; set; }
 
         /// <summary>
         /// Conference start date.
@@ -40,8 +54,11 @@
         public override bool Equals(object obj)
         {
             return obj is Conference conference &&
-                   Id == conference.Id &&
-                   Name == conference.Name &&
+                   UniqueName == conference.UniqueName &&
+                   DisplayName == conference.DisplayName &&
+                   IconUri == conference.IconUri &&
+                   Description == conference.Description &&
+                   Subtitle == conference.Subtitle &&
                    StartDate == conference.StartDate &&
                    EndDate == conference.EndDate &&
                    EqualityComparer<Venue>.Default.Equals(Venue, conference.Venue);
@@ -49,7 +66,7 @@
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Name, StartDate, EndDate, Venue);
+            return HashCode.Combine(UniqueName, DisplayName, IconUri, Description, Subtitle, StartDate, EndDate, Venue);
         }
     }
 }

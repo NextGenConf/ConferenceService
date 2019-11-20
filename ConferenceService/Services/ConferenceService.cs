@@ -11,7 +11,6 @@
     /// </summary>
     public class ConferenceService : IConferenceService
     {
-
         private readonly IMongoCollection<Conference> conferences;
 
         public ConferenceService(ConferenceDatabaseSettings settings)
@@ -31,11 +30,11 @@
         /// <summary>
         /// Find a conference with the specific id.
         /// </summary>
-        /// <param name="id">The id to filter by</param>
+        /// <param name="uniqueName">Unique name </param>
         /// <returns>The retrieved conference.</returns>
-        public Conference GetById(string id)
+        public Conference GetByUniqueName(string uniqueName)
         {
-            return conferences.Find(conference => conference.Id == id).FirstOrDefault();
+            return conferences.Find(conference => conference.UniqueName == uniqueName).FirstOrDefault();
         }
 
         /// <summary>
@@ -43,7 +42,7 @@
         /// </summary>
         public IEnumerable<Conference> GetAll()
         {
-            return conferences.Find(_ => true).ToList();
+            return conferences.Find(_ => true).Sort("{StartTime: 1}").ToList();
         }
 
         /// <summary>
