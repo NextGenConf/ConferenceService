@@ -19,6 +19,13 @@
         /// <param name="uniqueName">The id of the conference to retrieve</param>
         /// <returns>Conference</returns>
         Conference GetByUniqueName(string uniqueName);
+
+        /// <summary>
+        /// Adds a conference to the db.
+        /// </summary>
+        /// <param name="conference">The conference to add</param>
+        /// <returns>The conference, with the inserted id.</returns>
+        Conference Add(Conference conference);
     }
 
 }

@@ -103,5 +103,29 @@ namespace ConferenceService.Test
                 Times.Once());
             Assert.IsNull(result);
         }
+
+        /// <summary>
+        /// Verifies that the exact same conference that's provided in the 
+        /// http request is used for the store call.
+        /// </summary>
+        [TestMethod]
+        public void Add_FullConference_CallToConferencService()
+        {
+            var mockConferenceService = new Mock<IConferenceService>();
+            mockConferenceService.Setup(c => c.Add(It.IsAny<Conference>()));
+
+            var conferenceController = new ConferenceController(mockConferenceService.Object);
+            var conferenceToAdd = new Conference()
+            {
+                DisplayName = "Eva's Conference",
+                StartDate = DateTime.UtcNow,
+                EndDate = DateTime.UtcNow
+            };
+
+            conferenceController.Post(conferenceToAdd);
+            mockConferenceService.Verify(
+                c => c.Add(It.Is<Conference>(conf => conf == conferenceToAdd)),
+                Times.Once());
+        }
     }
 }
