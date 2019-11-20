@@ -117,7 +117,7 @@ namespace ConferenceService.Test
             var conferenceController = new ConferenceController(mockConferenceService.Object);
             var conferenceToAdd = new Conference()
             {
-                Name = "Eva's Conference",
+                DisplayName = "Eva's Conference",
                 StartDate = DateTime.UtcNow,
                 EndDate = DateTime.UtcNow
             };
