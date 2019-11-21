@@ -13,18 +13,21 @@
         private const string MongoDbPasswordEnvironmentVar = "MONGO_DB_PASSWORD";
         private const string MongoDbUserEnvironmentVar = "MONGO_DB_USER";
 
+        private string mongoUser;
+        private string mongoPassword;
+        private string mongoHostEnvironment;
+
         public string AuthString
         {
             get
             {
-                var mongoDbUser = Environment.GetEnvironmentVariable(MongoDbUserEnvironmentVar);
-                var mongoDbPassword = Environment.GetEnvironmentVariable(MongoDbPasswordEnvironmentVar);
-                if (mongoDbUser != null && mongoDbPassword != null)
+                if (mongoUser == null || mongoPassword == null)
                 {
-                    return $"{mongoDbUser}:{mongoDbPassword}@";
+                    mongoUser = Environment.GetEnvironmentVariable(MongoDbUserEnvironmentVar);
+                    mongoPassword = Environment.GetEnvironmentVariable(MongoDbPasswordEnvironmentVar);
                 }
 
-                return "";
+                return mongoUser != null && mongoPassword != null ? $"{mongoUser}:{mongoPassword}@" : "";
             }
         }
 
@@ -32,13 +35,12 @@
         { 
             get 
             {
-                var mongoDbHost = Environment.GetEnvironmentVariable(MongoDbHostEnvironmentVar);
-                if (mongoDbHost != null)
+                if (mongoHostEnvironment == null)
                 {
-                    return mongoDbHost;
+                    mongoHostEnvironment = Environment.GetEnvironmentVariable(MongoDbHostEnvironmentVar);
                 }
 
-                return MongoDbHostDefault;
+                return mongoHostEnvironment == null ? MongoDbHostDefault : mongoHostEnvironment;
             }
         }
 
