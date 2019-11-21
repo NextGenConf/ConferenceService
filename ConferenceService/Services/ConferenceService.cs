@@ -16,7 +16,7 @@
 
         public ConferenceService(ConferenceDatabaseSettings settings)
         {
-            client = new MongoClient($"mongodb://{settings.AuthString}{settings.ConnectionString}");
+            client = new MongoClient($"mongodb://{settings.AuthString}{settings.Host}:{settings.Port}{settings.Parameters}");
             mongoSettings = settings;
         }
 
