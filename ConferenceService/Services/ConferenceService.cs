@@ -45,7 +45,7 @@
         {
             var db = client.GetDatabase(mongoSettings.DatabaseName);
             var conferences = db.GetCollection<Conference>(mongoSettings.ConferenceCollectionName);
-            return conferences.Find(_ => true).Sort("{StartTime: 1}").ToList();
+            return conferences.Find(_ => true).Sort("{StartDate: 1}").ToList();
         }
 
         /// <summary>
