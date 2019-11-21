@@ -9,7 +9,7 @@
     public class ConferenceDatabaseSettings
     {
         private const string MongoDbHostDefault = "mongodb://localhost:27017";
-        private const string MongoDbHostEnvironmentVar = "MongoDbHost";
+        private const string MongoDbHostEnvironmentVar = "MONGO_DB_HOST";
 
         public string ConnectionString
         { 
