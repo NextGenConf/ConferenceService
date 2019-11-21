@@ -15,7 +15,7 @@
 
         public ConferenceService(ConferenceDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
+            var client = new MongoClient($"mongodb://{settings.AuthString}{settings.ConnectionString}");
             var database = client.GetDatabase(settings.DatabaseName);
 
             conferences = database.GetCollection<Conference>(settings.ConferenceCollectionName);
