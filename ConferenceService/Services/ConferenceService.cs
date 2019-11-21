@@ -11,14 +11,13 @@
     /// </summary>
     public class ConferenceService : IConferenceService
     {
-        private readonly IMongoCollection<Conference> conferences;
+        private MongoClient client;
+        private ConferenceDatabaseSettings mongoSettings;
 
         public ConferenceService(ConferenceDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
-
-            conferences = database.GetCollection<Conference>(settings.ConferenceCollectionName);
+            client = new MongoClient($"mongodb://{settings.AuthString}{settings.ConnectionString}");
+            mongoSettings = settings;
         }
 
         /// <summary>
@@ -34,6 +33,8 @@
         /// <returns>The retrieved conference.</returns>
         public Conference GetByUniqueName(string uniqueName)
         {
+            var db = client.GetDatabase(mongoSettings.DatabaseName);
+            var conferences = db.GetCollection<Conference>(mongoSettings.ConferenceCollectionName);
             return conferences.Find(conference => conference.UniqueName == uniqueName).FirstOrDefault();
         }
 
@@ -42,6 +43,8 @@
         /// </summary>
         public IEnumerable<Conference> GetAll()
         {
+            var db = client.GetDatabase(mongoSettings.DatabaseName);
+            var conferences = db.GetCollection<Conference>(mongoSettings.ConferenceCollectionName);
             return conferences.Find(_ => true).Sort("{StartTime: 1}").ToList();
         }
 
@@ -52,8 +55,9 @@
         /// <returns>The conference, with an updated id.</returns>
         public Conference Add(Conference conference)
         {
+            var db = client.GetDatabase(mongoSettings.DatabaseName);
+            var conferences = db.GetCollection<Conference>(mongoSettings.ConferenceCollectionName);
             conferences.InsertOne(conference);
-            // Conference is now updated with the id used during insertion.
             return conference;
         }
     }
